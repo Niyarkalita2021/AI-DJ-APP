@@ -46,3 +46,7 @@ body
     width: 130px;
     font-size: 25px;
 }
+canvas{
+    border: 5px solid white;
+    border-radius: 20px;
+}
