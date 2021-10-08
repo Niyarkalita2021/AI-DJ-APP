@@ -1,4 +1,5 @@
 song = "";
+screLeftWrist = 0;
 
 function preload()
 {
@@ -31,6 +32,9 @@ function gotPoses(results)
     if(results.length > 0)
     {
         console.log(results);
+        scoreLeftWrist = results[0].pose.keypoints[9].score;
+        console.log("scoreLeftWrist = " + scoreLeftWrist);
+
         rightWristX = results[0].pose.rightWrist.x;
         rightWristY = results[0].pose.rightWrist.y;
         console.log("rightWristX = " + rightWristX +" rightWristY = "+ rightWristY);
@@ -46,6 +50,16 @@ function draw() {
 
     fill("#00B2EE");
     stroke("#00B2EE");
+
+    if(scoreLeftWrist > 0.2)
+    {
+        circle(leftWristX,leftWristY,20);
+        InNumberleftwristY = Number(leftWristY);
+        remove_decimals = floor(InnumberleftWristY);
+        volume = remove_decimals/500;
+        document.getElementById("volume").innerHTML = "Volume = " + volume;
+        song.setVolume(volume);
+    }
 }
 
 function play()
